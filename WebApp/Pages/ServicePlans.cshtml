@@ -1,0 +1,30 @@
+﻿@page
+@model ServicePlansModel
+@{
+    ViewData["Title"] = "Service Plans";
+}
+
+<h1>Service Plans</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Date of Purchase</th>
+            <th>Number of Timesheets</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var plan in Model.ServicePlans)
+        {
+            <tr>
+                <td>@plan.Id</td>
+                <td>@plan.DateOfPurchase</td>
+                <td>
+                    <a href="/Timesheets?servicePlanId=@plan.Id">@plan.TimesheetCount</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

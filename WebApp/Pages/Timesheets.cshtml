@@ -1,0 +1,34 @@
+﻿@page
+@model WebApp.Pages.TimesheetsModel
+@{
+    ViewData["Title"] = "Timesheets";
+}
+
+<h1>Timesheets for ServicePlan @Model.ServicePlanId</h1>
+
+@if (Model.ServicePlan == null || !Model.ServicePlan.Timesheets.Any())
+{
+    <p>No timesheets found for this service plan.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Start</th>
+                <th>End</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var t in Model.ServicePlan.Timesheets)
+            {
+                <tr>
+                    <td>@t.Start</td>
+                    <td>@t.End</td>
+                    <td>@t.Description</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
