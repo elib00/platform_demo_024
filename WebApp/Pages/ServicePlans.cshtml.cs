@@ -26,6 +26,7 @@ namespace WebApp.Pages
                     DateOfPurchase = sp.DateOfPurchase,
                     TimesheetCount = sp.Timesheets.Count
                 })
+                .AsNoTracking()
                 .ToListAsync();
         }
     }

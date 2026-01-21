@@ -15,7 +15,11 @@ namespace WebApi.Services.ServicePlan
 
         public async Task<List<ServicePlanDTO>> GetServicePlans()
         {
-            var servicePlans = await _context.ServicePlans.ToListAsync();
+            var servicePlans = await _context.ServicePlans
+                .Include(sp => sp.Timesheets)
+                .AsNoTracking()
+                .ToListAsync();
+
             return servicePlans.Select(sp => new ServicePlanDTO
             {
                 Id = sp.Id,
@@ -28,6 +32,7 @@ namespace WebApi.Services.ServicePlan
         {
             var servicePlans = await _context.ServicePlans
                 .Include(sp => sp.Timesheets)
+                .AsNoTracking()
                 .ToListAsync();
 
             return servicePlans.Select(sp => new ServicePlanWithTimesheetsDTO

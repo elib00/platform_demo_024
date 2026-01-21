@@ -24,6 +24,7 @@ namespace WebApp.Pages
         {
             ServicePlan = await _context.ServicePlans
                 .Include(sp => sp.Timesheets)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(sp => sp.Id == ServicePlanId);
         }
     }
